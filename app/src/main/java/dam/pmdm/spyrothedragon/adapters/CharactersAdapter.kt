@@ -10,7 +10,8 @@ import dam.pmdm.spyrothedragon.R
 import dam.pmdm.spyrothedragon.models.Character
 
 class CharactersAdapter(
-    private val list: List<Character>
+    private val list: List<Character>,
+    private val onLongClick: (Character) -> Boolean //Se añade para controlar el click prolongado en el personaje
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
 
     private val characterImages = mapOf(
@@ -32,6 +33,12 @@ class CharactersAdapter(
 
         val drawableRes = characterImages[character.image] ?: R.drawable.placeholder
         holder.imageImageView.setImageResource(drawableRes)
+
+        //Configuramos el listener de pulsación larga en la vista de personajes
+        holder.itemView.setOnLongClickListener {
+            // Llamamos a la función que se pasa desde el Fragment
+            onLongClick(character)
+        }
     }
 
     override fun getItemCount(): Int = list.size

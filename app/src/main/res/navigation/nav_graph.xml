@@ -9,7 +9,11 @@
         android:id="@+id/navigation_worlds"
         android:name="dam.pmdm.spyrothedragon.ui.WorldsFragment"
         android:label="@string/worlds"
-        tools:layout="@layout/fragment_worlds" />
+        tools:layout="@layout/fragment_worlds">
+        <action
+            android:id="@+id/action_navigation_worlds_to_videoFragment"
+            app:destination="@id/navigation_video" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_characters"
@@ -22,4 +26,66 @@
         android:name="dam.pmdm.spyrothedragon.ui.CollectiblesFragment"
         android:label="@string/collectibles"
         tools:layout="@layout/fragment_collectibles" />
+
+    <fragment
+        android:id="@+id/navigation_bienvenida"
+        android:name="dam.pmdm.spyrothedragon.ui.BienvenidaFragment"
+        tools:layout="@layout/fragment_bienvenida">
+        <action
+            android:id="@+id/action_bienvenida_to_guia2"
+            app:destination="@id/navigation_pantalla_2"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pantalla_2"
+        android:name="dam.pmdm.spyrothedragon.ui.GuiaPantalla2Fragment"
+        tools:layout="@layout/fragment_guia_pantalla_2">
+        <action
+            android:id="@+id/action_guia2_to_guia3"
+            app:destination="@id/navigation_pantalla_3"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pantalla_3"
+        android:name="dam.pmdm.spyrothedragon.ui.GuiaPantalla3Fragment"
+        tools:layout="@layout/fragment_guia_pantalla_3">
+        <action
+            android:id="@+id/action_guia3_to_guia4"
+            app:destination="@id/navigation_pantalla_4"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pantalla_4"
+        android:name="dam.pmdm.spyrothedragon.ui.GuiaPantalla4Fragment"
+        tools:layout="@layout/fragment_guia_pantalla_4">
+        <action
+            android:id="@+id/action_guia4_to_guia5"
+            app:destination="@id/navigation_pantalla_5"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pantalla_5"
+        android:name="dam.pmdm.spyrothedragon.ui.GuiaPantalla5Fragment"
+        tools:layout="@layout/fragment_guia_pantalla_5">
+        <action
+            android:id="@+id/action_guia5_to_guia6"
+            app:destination="@id/navigation_pantalla_6"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_pantalla_6"
+        android:name="dam.pmdm.spyrothedragon.ui.GuiaPantalla6Fragment"
+        tools:layout="@layout/fragment_guia_pantalla_6" />
+
+    <fragment
+        android:id="@+id/navigation_video"
+        android:name="dam.pmdm.spyrothedragon.ui.VideoFragment"
+        tools:layout="@layout/fragment_video" />
+
+
 </navigation>

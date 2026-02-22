@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dam.pmdm.spyrothedragon.R
@@ -24,6 +25,9 @@ class WorldsFragment : Fragment() {
     private lateinit var adapter: WorldsAdapter
     private val worldsList = mutableListOf<World>()
 
+    private var contadorClicks = 0
+    private var ultimaPosicion = -1
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,7 +38,9 @@ class WorldsFragment : Fragment() {
 
         recyclerView = binding.recyclerViewWorlds
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = WorldsAdapter(worldsList)
+        adapter = WorldsAdapter(worldsList){posicion
+            -> detectarEasterEgg(posicion)
+        }
         recyclerView.adapter = adapter
 
         loadWorlds()
@@ -83,6 +89,21 @@ class WorldsFragment : Fragment() {
 
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun detectarEasterEgg(posicion: Int) {
+        if (posicion == ultimaPosicion) {
+            contadorClicks++
+        } else {
+            contadorClicks = 1
+            ultimaPosicion = posicion
+        }
+
+        if (contadorClicks == 3) {
+            contadorClicks = 0
+            // Navegación definida en el nav_graph
+            findNavController().navigate(R.id.action_navigation_worlds_to_videoFragment)
         }
     }
 }

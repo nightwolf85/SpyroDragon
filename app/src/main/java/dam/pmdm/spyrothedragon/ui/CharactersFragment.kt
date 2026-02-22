@@ -34,7 +34,12 @@ class CharactersFragment : Fragment() {
 
         recyclerView = binding.recyclerViewCharacters
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = CharactersAdapter(charactersList)
+        adapter = CharactersAdapter(charactersList) { character ->
+            if (character.name=="Ripto"){
+                ejecutarEasterEggRipto()
+            }
+            true
+        }
         recyclerView.adapter = adapter
 
         loadCharacters()
@@ -84,5 +89,13 @@ class CharactersFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun ejecutarEasterEggRipto() {
+        //Hacemos visible la vista del Canvas
+        binding.vistaDiamante.visibility = View.VISIBLE
+
+        //Iniciamos la animación del brillo
+        binding.vistaDiamante.iniciarBrillo()
     }
 }
